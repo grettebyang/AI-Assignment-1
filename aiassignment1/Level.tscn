@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://bumf22a288ih"]
+
+[ext_resource type="PackedScene" uid="uid://bx0aj14pwvh2f" path="res://Assets/NPC.tscn" id="1_bexhn"]
+[ext_resource type="Script" uid="uid://dmcwp0sstm1bk" path="res://Ui.cs" id="2_2nifc"]
+[ext_resource type="PackedScene" uid="uid://b72f7k4aurpk3" path="res://Function.tscn" id="2_t7iv1"]
+[ext_resource type="PackedScene" uid="uid://dxyj43us77k10" path="res://Player.tscn" id="4_wkftn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qhyq2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bexhn"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(43.845, 0, 0, 0, 0.295, 0, 0, 0, 39.724, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1.57, 0, 0, 0, 1, 0, 0, 0, 2.12, 0, 0, 0)
+mesh = SubResource("BoxMesh_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_bexhn")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(0.595, 0, 0, 0, 4.955, 0, 0, 0, 39.724, -21.7977, 2.28091, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+transform = Transform3D(2.22, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_bexhn")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(0.595, 0, 0, 0, 4.955, 0, 0, 0, 39.724, 21.4465, 2.28091, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall4"]
+transform = Transform3D(2.22, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+shape = SubResource("BoxShape3D_bexhn")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.60083e-08, 0, 44.084, 0, 4.955, 0, -0.595, 0, -1.92697e-06, -0.184488, 2.28091, 19.5462)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+transform = Transform3D(1.915, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+shape = SubResource("BoxShape3D_bexhn")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-2.60083e-08, 0, 44.084, 0, 4.955, 0, -0.595, 0, -1.92697e-06, -0.184488, 2.28091, -19.9768)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3"]
+transform = Transform3D(2.78, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+shape = SubResource("BoxShape3D_bexhn")
+
+[node name="Npc" parent="." node_paths=PackedStringArray("_target", "_modeController") instance=ExtResource("1_bexhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92648, 4.67711, 8.37384)
+_maxSpeed = 3.0
+_maxAcc = 4.735
+_target = NodePath("../Player")
+_modeController = NodePath("../UI")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.482503, 0.875894, 0, -0.875894, 0.482503, 0, 19.6745, 16)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, 0.707107, 0, -0.353553, 0.353553, 0.866026, 0.612372, -0.612372, 0.5, 8, 6, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.945062, 0.00405315, -0.326866, -0.289861, -0.451882, -0.843672, -0.151125, 0.892068, -0.425882, -12.6713, 6, 0)
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("_functions")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_2nifc")
+_functions = [NodePath("Function1"), NodePath("Function2"), NodePath("Function3"), NodePath("Function4"), NodePath("Function5"), NodePath("Function6")]
+
+[node name="Function1" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 49.0
+offset_bottom = 55.0
+_action = "Function1"
+
+[node name="Function2" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 6.0
+offset_right = 108.0
+offset_bottom = 55.0
+text = "2
+Flee"
+_action = "Function2"
+
+[node name="Function3" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 6.0
+offset_right = 179.0
+offset_bottom = 55.0
+text = "3
+Pursue"
+_action = "Function3"
+
+[node name="Function4" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 7.0
+offset_right = 246.0
+offset_bottom = 56.0
+text = "4
+Evade"
+_action = "Function4"
+
+[node name="Function5" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 4.0
+offset_right = 320.0
+offset_bottom = 53.0
+text = "5
+Arrive"
+_action = "Function5"
+
+[node name="Function6" parent="UI" instance=ExtResource("2_t7iv1")]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 6.0
+offset_right = 409.0
+offset_bottom = 55.0
+text = "6
+Wander"
+_action = "Function6"
+
+[node name="Player" parent="." node_paths=PackedStringArray("cameraNode") instance=ExtResource("4_wkftn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4755, 2.03461, -5.16346)
+Speed = 10.0
+cameraNode = NodePath("../Camera3D")
