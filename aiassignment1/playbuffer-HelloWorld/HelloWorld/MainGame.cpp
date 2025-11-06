@@ -30,7 +30,7 @@ bool MainGameUpdate( float elapsedTime )
 	p.Simulate(elapsedTime);
 	p.Draw();
 
-	ai.Simulate(elapsedTime, gm.activeFunction, p.pos);
+	ai.Simulate(elapsedTime, gm.activeFunction, p);
 	ai.Draw();
 
 	Play::PresentDrawingBuffer();

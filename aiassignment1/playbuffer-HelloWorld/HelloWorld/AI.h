@@ -30,14 +30,18 @@ public:
 	AI();
 	
 	void Draw();
-	void Simulate(float elapsedTime, int activeFunction, Play::Point2D tar);
+	void Simulate(float elapsedTime, int activeFunction, Player tar);
 
 	Play::Point2D pos;
-	Play::Point2D target;
+	Player target;
+	Play::Point2D tarPos;
 	Play::Point2D velocity;
 	float acc;
 	float speed;
 	float rotation;
+	float orientation;
+	float targetRotation;
+	float wanderOrientation;
 
 	//Steering functions
 	SteeringOutput Seek();
@@ -46,4 +50,8 @@ public:
 	SteeringOutput Evade();
 	SteeringOutput Arrive();
 	SteeringOutput Wander();
+
+	SteeringOutput Face();
+	SteeringOutput Align();
+	float MapToRange(float rot);
 };

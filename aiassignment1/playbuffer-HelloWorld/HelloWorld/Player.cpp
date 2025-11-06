@@ -7,7 +7,7 @@ using namespace std;
 Player::Player()
 {
 	pos = Play::Point2D(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2);
-	maxSpeed = 3;
+	maxSpeed = 100;
 	velocity = Play::Point2D(0, 0);
 	rotation = 0;
 }
@@ -34,6 +34,6 @@ void Player::Simulate(float elapsedTime)
 	velocity *= maxSpeed;
 
 	//Player Movement
-	pos.y += velocity.y;
-	pos.x += velocity.x;
+	pos.y += velocity.y * elapsedTime;
+	pos.x += velocity.x * elapsedTime;
 }
