@@ -191,19 +191,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="BlendedSteering.cpp" />
+    <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Kinematic.cpp" />
     <ClCompile Include="MainGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Path.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Seek.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Play.h" />
     <ClInclude Include="AI.h" />
+    <ClInclude Include="BlendedSteering.h" />
+    <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Kinematic.h" />
+    <ClInclude Include="Path.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Seek.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

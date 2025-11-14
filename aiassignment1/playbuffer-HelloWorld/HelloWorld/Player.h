@@ -1,5 +1,6 @@
 #pragma once
 #include "Play.h"
+#include "CollisionDetector.h"
 
 class Player
 {
@@ -12,6 +13,6 @@ public:
 	Play::Point2D pos;
 	Play::Point2D velocity;
 	float maxSpeed;
-	float rotation;
-
+	float orientation;
+	CollisionDetector colDet;
 };
