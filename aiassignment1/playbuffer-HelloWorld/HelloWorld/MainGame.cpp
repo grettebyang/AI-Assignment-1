@@ -45,6 +45,10 @@ bool MainGameUpdate(float elapsedTime)
 		}
 		else if (gm.activeFunction == 9)
 		{
+			if (Play::KeyPressed(KEY_SPACE))
+			{
+				ai.colDet.RandomizeWalls();
+			}
 			for (int i = 0; i < 3; i++)
 			{
 				ai.colDet.walls[i].Draw();

@@ -17,6 +17,7 @@ void Wall::Draw()
 Collision CollisionDetector::GetCollision(Play::Point2D position, Play::Point2D moveAmount)
 {
 	Collision col;
+	Play::Point2D curCol;
 	Play::Point2D endPoint = position + moveAmount;
 	float startX;
 	float startY;
@@ -94,7 +95,7 @@ Collision CollisionDetector::GetCollision(Play::Point2D position, Play::Point2D 
 			continue;
 		}
 
-		if (col.position.x == col.position.x && col.position.y == col.position.y)
+		if (col.position.x == col.position.x && col.position.y == col.position.y && (col.position - position).Length() < (curCol - position).Length())
 		{
 			//Play::DrawCircle(col.position, 4, Play::cYellow);
 			float nx = 0;
@@ -123,34 +124,10 @@ Collision CollisionDetector::GetCollision(Play::Point2D position, Play::Point2D 
 			col.normal = Play::Point2D(nx, ny) - col.position;
 			//Play::DrawLine(col.position, Play::Point2D(nx, ny), Play::cOrange);
 			col.normal.Normalize();
-			return col;
+			curCol = col.position;
 		}
 	}
-
-	//if (endPoint.y > DISPLAY_HEIGHT)
-	//{
-	//	col.position.y = DISPLAY_HEIGHT;
-	//	col.position.x = position.x + moveAmount.x * (col.position.y - position.y) / moveAmount.y;
-	//	col.normal = Play::Point2D(0, -1);
-	//}
-	//else if (endPoint.y < 0)
-	//{
-	//	col.position.y = 0;
-	//	col.position.x = position.x + moveAmount.x * (col.position.y - position.y) / moveAmount.y;
-	//	col.normal = Play::Point2D(0, 1);
-	//}
-	//else if (endPoint.x > DISPLAY_WIDTH)
-	//{
-	//	col.position.x = DISPLAY_WIDTH;
-	//	col.position.y = position.y + moveAmount.y * (col.position.x - position.x) / moveAmount.x;
-	//	col.normal = Play::Point2D(-1, 0);
-	//}
-	//else if (endPoint.x < 0)
-	//{
-	//	col.position.x = 0;
-	//	col.position.y = position.y + moveAmount.y * (col.position.x - position.x) / moveAmount.x;
-	//	col.normal = Play::Point2D(1, 0);
-	//}
+	col.position = curCol;
 
 	return col;
 }
@@ -172,4 +149,15 @@ float CollisionDetector::DotProduct(Play::Point2D v1, Play::Point2D v2)
 	//Play::DrawDebugText(Play::Point2D(100, 16), to_string(dot).c_str(), Play::cWhite, true);
 
 	return dot;
+}
+
+void CollisionDetector::RandomizeWalls()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		walls[i].start.x = rand() % (DISPLAY_WIDTH - 40);
+		walls[i].start.y = rand() % DISPLAY_HEIGHT;
+		walls[i].end.x = walls[i].start.x + (rand() % 80);
+		walls[i].end.y = walls[i].start.y + ((rand() % 80) - (rand() % 160));
+	}
 }

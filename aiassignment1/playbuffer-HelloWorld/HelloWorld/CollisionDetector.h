@@ -20,7 +20,7 @@ struct Wall
 		start.x = rand() % (DISPLAY_WIDTH - 80);
 		start.y = rand() % (DISPLAY_HEIGHT - 80);
 		end.x = start.x + (rand() % 80);
-		end.y = start.y + (rand() % 80);
+		end.y = start.y + ((rand() % 80) - (rand() % 160));
 
 		//start.x = DISPLAY_WIDTH / 2;
 		//end.x = start.x;
@@ -45,5 +45,6 @@ public:
 	Collision GetCollision(Play::Point2D position, Play::Point2D moveAmount);
 	bool IsZero(float n);
 	float DotProduct(Play::Point2D v1, Play::Point2D v2);
+	void RandomizeWalls();
 };
 
